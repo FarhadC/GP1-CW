@@ -71,8 +71,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	/* initialize random seed: */
 	srand((unsigned int)time(NULL));
 
-	// Create vector array of textures
-	LPCSTR texturesToUse[] = { "Images\\asteroid1.png", "Images\\asteroid2.png", "Images\\asteroid3.png", "Images\\asteroid4.png", "Images\\bullet.png" };
+	//Create vector array of textures
+	//Changed Textures to Zombies and gun's bullet
+	LPCSTR texturesToUse[] = { "Images\\Zombie_1.png", "Images\\Zombie_2.png", "Images\\Zombie_3.png", "Images\\Zombie_1.png", "Images\\Bullet.png" };
 	for (int tCount = 0; tCount < 5; tCount++)
 	{
 		theGameTextures.push_back(new cTexture());
@@ -110,16 +111,17 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		theAsteroids[astro]->setMdlRadius();
 	}
 
-
+	//Changed background texture to grass
 	cTexture textureBkgd;
-	textureBkgd.createTexture("Images\\starscape1024x768.png");
+	textureBkgd.createTexture("Images\\Background.png");
 	cBkGround spriteBkgd;
 	spriteBkgd.setSpritePos(glm::vec2(0.0f, 0.0f));
 	spriteBkgd.setTexture(textureBkgd.getTexture());
 	spriteBkgd.setTextureDimensions(textureBkgd.getTWidth(), textureBkgd.getTHeight());
 
+	//Changed Rocket sprite to Player sprite
 	cTexture rocketTxt;
-	rocketTxt.createTexture("Images\\rocketSprite.png");
+	rocketTxt.createTexture("Images\\Player.png");
 	cRocket rocketSprite;
 	rocketSprite.attachInputMgr(theInputMgr); // Attach the input manager to the sprite
 	rocketSprite.setSpritePos(glm::vec2(512.0f, 380.0f));
