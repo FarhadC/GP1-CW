@@ -64,14 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="asteroidsGame.cpp" />
-    <ClCompile Include="cAsteroid.cpp" />
+    <ClCompile Include="zombieGame.cpp" />
+    <ClCompile Include="cZombie.cpp" />
     <ClCompile Include="cBkGround.cpp" />
     <ClCompile Include="cBullet.cpp" />
     <ClCompile Include="cFont.cpp" />
     <ClCompile Include="cFontMgr.cpp" />
     <ClCompile Include="cInputMgr.cpp" />
-    <ClCompile Include="cRocket.cpp" />
+    <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cSoundMgr.cpp" />
     <ClCompile Include="cSprite.cpp" />
@@ -81,14 +81,14 @@
     <ClCompile Include="windowOGL.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="asteroidsGame.h" />
-    <ClInclude Include="cAsteroid.h" />
+    <ClInclude Include="zombieGame.h" />
+    <ClInclude Include="cZombie.h" />
     <ClInclude Include="cBkGround.h" />
     <ClInclude Include="cBullet.h" />
     <ClInclude Include="cFont.h" />
     <ClInclude Include="cFontMgr.h" />
     <ClInclude Include="cInputMgr.h" />
-    <ClInclude Include="cRocket.h" />
+    <ClInclude Include="cPlayer.h" />
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cSoundMgr.h" />
     <ClInclude Include="cSprite.h" />

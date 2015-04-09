@@ -12,7 +12,7 @@
 #include "cSoundMgr.h"
 #include "cFontMgr.h"
 #include "cSprite.h"
-#include "asteroidsGame.h"
+#include "zombieGame.h"
 
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
@@ -90,25 +90,29 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	// load game fontss
 	// Load Fonts
-	LPCSTR gameFonts[2] = { "Fonts/digital-7.ttf", "Fonts/space age.ttf" };
+	//Changed name "space age" to "ZOMBIE"
+	LPCSTR gameFonts[2] = { "Fonts/digital-7.ttf", "Fonts/ZOMBIE.ttf" };
 
+	//Changed "Space" to "ZOMBIE"
+	//Changed text size from "24" to "35"
 	theFontMgr->addFont("SevenSeg", gameFonts[0], 24);
-	theFontMgr->addFont("Space", gameFonts[1], 24);
+	theFontMgr->addFont("ZOMBIE", gameFonts[1], 35);
 
 	// Create vector array of textures
 	//Changed (astro < 5) to (astro < 50). This is the number of zombies spawned at start
+	//Changed random to 5+2 from 5+1
 	for (int astro = 0; astro < 50; astro++)
 	{
-		theAsteroids.push_back(new cAsteroid);
-		theAsteroids[astro]->setSpritePos(glm::vec2(windowWidth / (rand() % 5 + 1), windowHeight / (rand() % 5 + 1)));
-		theAsteroids[astro]->setSpriteTranslation(glm::vec2((rand() % 4 + 1), (rand() % 4 + 1)));
+		theZombies.push_back(new cZombie);
+		theZombies[astro]->setSpritePos(glm::vec2(windowWidth / (rand() % 5 + 2), windowHeight / (rand() % 5 + 2)));
+		theZombies[astro]->setSpriteTranslation(glm::vec2((rand() % 4 + 1), (rand() % 4 + 1)));
 		int randAsteroid = rand() % 4;
-		theAsteroids[astro]->setTexture(theGameTextures[randAsteroid]->getTexture());
-		theAsteroids[astro]->setTextureDimensions(theGameTextures[randAsteroid]->getTWidth(), theGameTextures[randAsteroid]->getTHeight());
-		theAsteroids[astro]->setSpriteCentre();
-		theAsteroids[astro]->setAsteroidVelocity(glm::vec2(glm::vec2(0.0f, 0.0f)));
-		theAsteroids[astro]->setActive(true);
-		theAsteroids[astro]->setMdlRadius();
+		theZombies[astro]->setTexture(theGameTextures[randAsteroid]->getTexture());
+		theZombies[astro]->setTextureDimensions(theGameTextures[randAsteroid]->getTWidth(), theGameTextures[randAsteroid]->getTHeight());
+		theZombies[astro]->setSpriteCentre();
+		theZombies[astro]->setAsteroidVelocity(glm::vec2(glm::vec2(0.0f, 0.0f)));
+		theZombies[astro]->setActive(true);
+		theZombies[astro]->setMdlRadius();
 	}
 
 	//Changed background texture to grass
@@ -120,11 +124,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	spriteBkgd.setTextureDimensions(textureBkgd.getTWidth(), textureBkgd.getTHeight());
 
 	//Changed Rocket sprite to Player sprite
+	//Changed spawn position of player to be further, used to be 512, now 700
 	cTexture rocketTxt;
 	rocketTxt.createTexture("Images\\Player.png");
-	cRocket rocketSprite;
+	cPlayer rocketSprite;
 	rocketSprite.attachInputMgr(theInputMgr); // Attach the input manager to the sprite
-	rocketSprite.setSpritePos(glm::vec2(512.0f, 380.0f));
+	rocketSprite.setSpritePos(glm::vec2(700.0f, 380.0f));
 	rocketSprite.setTexture(rocketTxt.getTexture());
 	rocketSprite.setTextureDimensions(rocketTxt.getTWidth(), rocketTxt.getTHeight());
 	rocketSprite.setSpriteCentre();
@@ -146,12 +151,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		rocketSprite.update(elapsedTime);
 
-		vector<cAsteroid*>::iterator asteroidIterator = theAsteroids.begin();
-		while (asteroidIterator != theAsteroids.end())
+		vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
+		while (asteroidIterator != theZombies.end())
 		{
 			if ((*asteroidIterator)->isActive() == false)
 			{
-				asteroidIterator = theAsteroids.erase(asteroidIterator);
+				asteroidIterator = theZombies.erase(asteroidIterator);
 			}
 			else
 			{
@@ -161,8 +166,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			}
 		}
 
+		//Changed name of text from "Asteroids" to "Infected"
+		//Replaced "Space" with "ZOMBIE"
 		rocketSprite.render();
-		theFontMgr->getFont("Space")->printText("Asteriods", FTPoint(0.0f, -1.0f, 0.0f));
+		theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
 
 		pgmWNDMgr->swapBuffers();
 		theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);

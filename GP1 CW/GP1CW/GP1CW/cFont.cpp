@@ -67,7 +67,12 @@ void cFont::printText(LPCSTR text, FTPoint textPos)
 	glPushMatrix();
 
 	glColor3f(0.0f, 255.0f, 0.0f);
+	//Moved the text. Translated by 5 on x and 20 on y
+	//Also rotated by 180 degrees on x axis
+	glTranslatef(5.0f, 25.0f, 0.0f);
+	glRotatef(180, 1.0f, 0.0f, 0.0f);
 	theFont->Render(text,  -1, textPos);
+	
 
 	glPopMatrix();
 }
