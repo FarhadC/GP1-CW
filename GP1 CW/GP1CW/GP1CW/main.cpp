@@ -96,8 +96,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	theFontMgr->addFont("Space", gameFonts[1], 24);
 
 	// Create vector array of textures
-
-	for (int astro = 0; astro < 5; astro++)
+	//Changed (astro < 5) to (astro < 50). This is the number of zombies spawned at start
+	for (int astro = 0; astro < 50; astro++)
 	{
 		theAsteroids.push_back(new cAsteroid);
 		theAsteroids[astro]->setSpritePos(glm::vec2(windowWidth / (rand() % 5 + 1), windowHeight / (rand() % 5 + 1)));

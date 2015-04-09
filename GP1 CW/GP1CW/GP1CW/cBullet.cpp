@@ -56,7 +56,8 @@ void cBullet::update(float deltaTime)
 	
 	spritePos2D += bulletVelocity * deltaTime;
 
-	bulletVelocity *= 0.95;
+	//Changed bullet velocity from 0.95 to 1.1
+	bulletVelocity *= 1.1;
 
 	setBoundingRect(&boundingRect);
 
