@@ -73,6 +73,26 @@ glm::vec2 cZombie::getAsteroidVelocity()
 	return asteroidVelocity;
 }
 /*
+This sets the health for a zombie
+=================================================================
+	Sets the health for Zombies
+=================================================================
+*/
+void cZombie::setHealth(float currentHealth)
+{
+	health = currentHealth;
+}
+/*
+// This gets the health for a zombie
+=================================================================
+Gets the health for Zombies
+=================================================================
+*/
+float cZombie::getHealth()
+{
+	return health;
+}
+/*
 ==========================================================================
 Use this method to show the collision box.
 ==========================================================================

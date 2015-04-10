@@ -13,12 +13,18 @@ class cZombie : public cSprite
 {
 private:
 	glm::vec2 asteroidVelocity = glm::vec2(0.0f, 0.0f);
+	//zombies have 3 health
+	float health = (rand() % 10 + 1);
+
 
 public:
 	void render();		// Default render function
 	void update(float deltaTime);		// Player update method
 	void setAsteroidVelocity(glm::vec2 asteroidVel);   // Sets the velocity for the player
 	glm::vec2 getAsteroidVelocity();				 // Gets the player velocity
+	//Constructor to set and get health
+	void setHealth(float currentHealth);
+	float getHealth();
 	void renderCollisionBox();				// Use this function to show the collision box
 };
 #endif
