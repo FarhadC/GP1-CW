@@ -120,4 +120,7 @@
     <Library Include="Libraries\ILUT.lib" />
     <Library Include="Libraries\OpenAL32.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\Space_Coast.mp3" />
+  </ItemGroup>
 </Project>
