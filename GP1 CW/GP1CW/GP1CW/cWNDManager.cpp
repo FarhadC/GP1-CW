@@ -245,9 +245,21 @@ LRESULT CALLBACK cWNDManager::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 			DestroyWindow(pInstance->m_hwnd); //Send a WM_DESTROY message
 		}
 		pInstance->m_InputMgr->keyDown(wParam);
+	}
+		break;
+		//return 0;
+
+	//Added in to allow multiple key presses
+	case WM_KEYUP:
+	{
+		if (wParam == VK_ESCAPE)
+		{
+			DestroyWindow(pInstance->m_hwnd);
+		}
+		pInstance->m_InputMgr->keyUp(wParam);
 		return 0;
 	}
-
+	
 		break;
 	default:
 		break;

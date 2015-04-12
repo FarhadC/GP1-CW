@@ -19,7 +19,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    LPSTR cmdLine,
                    int cmdShow)
 {
-
     //Set our window settings
     const int windowWidth = 1024;
     const int windowHeight = 768;
@@ -82,11 +81,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	// load game sounds
 	// Load Sound
-	LPCSTR gameSounds[3] = { "Audio/who10Edit.wav", "Audio/shot007.wav", "Audio/explosion2.wav" };
+	//Changed 
+	LPCSTR gameSounds[3] = { "Audio/Background.wav", "Audio/AK47_Shot.wav", "Audio/Zombie_Hit.wav" };
 
-	//theSoundMgr->add("Theme", gameSounds[0]);
+	theSoundMgr->add("Theme", gameSounds[0]);
 	theSoundMgr->add("Shot", gameSounds[1]);
-	theSoundMgr->add("Explosion", gameSounds[2]);
+	theSoundMgr->add("Impact", gameSounds[2]);
 
 	// load game fontss
 	// Load Fonts
@@ -100,11 +100,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	// Create vector array of textures
 	//Changed (astro < 5) to (astro < 50). This is the number of zombies spawned at start
-	//Changed random to 5+2 from 5+1
+	//Changed random to 5+2 from 5+1 then 9+2
 	for (int astro = 0; astro < 50; astro++)
 	{
 		theZombies.push_back(new cZombie);
-		theZombies[astro]->setSpritePos(glm::vec2(windowWidth / (rand() % 5 + 2), windowHeight / (rand() % 5 + 2)));
+		theZombies[astro]->setSpritePos(glm::vec2(windowWidth / (rand() % 9 + 2), windowHeight / (rand() % 9 + 2)));
 		theZombies[astro]->setSpriteTranslation(glm::vec2((rand() % 4 + 1), (rand() % 4 + 1)));
 		int randAsteroid = rand() % 4;
 		theZombies[astro]->setTexture(theGameTextures[randAsteroid]->getTexture());
@@ -172,7 +172,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
 
 		pgmWNDMgr->swapBuffers();
-		theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
+		//Commented this so out i could use multiple key inputs at the same time
+		//theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
     }
 
 	theOGLWnd.shutdown(); //Free any resources

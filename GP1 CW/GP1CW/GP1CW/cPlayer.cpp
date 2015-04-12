@@ -82,6 +82,8 @@ void cPlayer::update(float deltaTime)
 		thePlayerBullets[numBullets]->setMdlRadius();
 		// play the firing sound
 		m_SoundMgr->getSnd("Shot")->playAudio(AL_TRUE);
+		//Small delay when firing so sounds come out properly
+		Sleep(40);
 	}
 
 	if (spriteRotation > 360)
@@ -132,7 +134,7 @@ void cPlayer::update(float deltaTime)
 		{
 			bulletIterartor = thePlayerBullets.erase(bulletIterartor);
 			// play the explosion sound.
-			m_SoundMgr->getSnd("Explosion")->playAudio(AL_TRUE);
+			m_SoundMgr->getSnd("Impact")->playAudio(AL_TRUE);
 		}
 		else
 		{
