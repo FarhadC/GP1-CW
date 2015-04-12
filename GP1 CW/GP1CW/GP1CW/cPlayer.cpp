@@ -84,6 +84,7 @@ void cPlayer::update(float deltaTime)
 		m_SoundMgr->getSnd("Shot")->playAudio(AL_TRUE);
 		//Small delay when firing so sounds come out properly
 		Sleep(40);
+		
 	}
 
 	if (spriteRotation > 360)

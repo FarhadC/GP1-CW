@@ -54,6 +54,7 @@ void cZombie::update(float deltaTime)
 
 	setBoundingRect(&boundingRect);
 }
+
 /*
 =================================================================
   Sets the velocity for the Zombie
