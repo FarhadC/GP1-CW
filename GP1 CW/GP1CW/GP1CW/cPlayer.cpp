@@ -117,7 +117,7 @@ void cPlayer::update(float deltaTime)
 			if ((*asteroidIterator)->collidedWith((*asteroidIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
 			{
 				// if a collision set the bullet and asteroid to false
-				//Everytime bullet hits zombie, health -1
+				//Everytime bullet hits zombie, health -1 and also add 10 to players score
 				(*asteroidIterator)->setHealth(((*asteroidIterator)->getHealth()) - 1);
 				if ((*asteroidIterator)->getHealth() < 1)
 				{

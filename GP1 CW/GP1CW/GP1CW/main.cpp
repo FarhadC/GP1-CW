@@ -121,12 +121,21 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	spriteBkgd.setTexture(textureBkgd.getTexture());
 	spriteBkgd.setTextureDimensions(textureBkgd.getTWidth(), textureBkgd.getTHeight());
 
+	//Create new texture for end screen background and display in same way as game background
 	cTexture textureEndBkgd;
 	textureEndBkgd.createTexture("Images\\EndBackground.png");
 	cBkGround spriteEndBkgd;
 	spriteEndBkgd.setSpritePos(glm::vec2(0.0f, 0.0f));
 	spriteEndBkgd.setTexture(textureEndBkgd.getTexture());
 	spriteEndBkgd.setTextureDimensions(textureEndBkgd.getTWidth(), textureEndBkgd.getTHeight());
+
+	//Create new texture for start screen/menu and display in same way as all backgrounds
+	cTexture textureStartBkgd;
+	textureStartBkgd.createTexture("Images\\StartBackground.png");
+	cBkGround spriteStartBkgd;
+	spriteStartBkgd.setSpritePos(glm::vec2(0.0f, 0.0f));
+	spriteStartBkgd.setTexture(textureStartBkgd.getTexture());
+	spriteStartBkgd.setTextureDimensions(textureStartBkgd.getTWidth(), textureStartBkgd.getTHeight());
 
 	//Changed Rocket sprite to Player sprite
 	//Changed spawn position of player to be further, used to be 512, now 700
@@ -149,51 +158,59 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	while (pgmWNDMgr->isWNDRunning())
     {
 		pgmWNDMgr->processWNDEvents(); //Process any window events
-		
 
         //We get the time that passed since the last frame
 		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
 
+		//render the start screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//If the player gets over 300 points, close the window
-		if (score > 2500)
-		{
-			spriteEndBkgd.render();
-			string s = to_string(score);
-			LPCSTR lpStr = s.c_str();
-			theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(675.0f, -525.0f, 0.0f));
-			theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(975.0f, -525.0f, 0.0f));
-		}
-		else
-		{
-			spriteBkgd.render();
+		spriteStartBkgd.render();
 
-			rocketSprite.update(elapsedTime);
-
-			vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
-			while (asteroidIterator != theZombies.end())
+		//if player pushes enter, load the game screen
+		if (theInputMgr->wasKeyPressed(VK_RETURN))
+		{
+			//If the player gets over x points, renders the end screen and show the players score
+			if (score > 2500)
 			{
-				if ((*asteroidIterator)->isActive() == false)
-				{
-					asteroidIterator = theZombies.erase(asteroidIterator);
-				}
-				else
-				{
-					(*asteroidIterator)->update(elapsedTime);
-					(*asteroidIterator)->render();
-					++asteroidIterator;
-				}
+				//show the players score
+				spriteEndBkgd.render();
+				string s = to_string(score);
+				LPCSTR lpStr = s.c_str();
+				theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(675.0f, -525.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(975.0f, -525.0f, 0.0f));
 			}
 
-			//Changed name of text from "Asteroids" to "Infected"
-			//Replaced "Space" with "ZOMBIE"
-			rocketSprite.render();
-			//convert int score to string LPCSTR then substitute this into the printText method
-			string s = to_string(score);
-			LPCSTR lpStr = s.c_str();
-			theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
-			theFontMgr->getFont("ZOMBIE")->printText("Score -", FTPoint(290.0f, -1.0f, 0.0f));
-			theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(410.0f, -1.0f, 0.0f));
+			else
+			{
+				spriteBkgd.render();
+
+				rocketSprite.update(elapsedTime);
+
+				vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
+				while (asteroidIterator != theZombies.end())
+				{
+					if ((*asteroidIterator)->isActive() == false)
+					{
+						asteroidIterator = theZombies.erase(asteroidIterator);
+					}
+					else
+					{
+						(*asteroidIterator)->update(elapsedTime);
+						(*asteroidIterator)->render();
+						++asteroidIterator;
+					}
+				}
+
+				//Changed name of text from "Asteroids" to "Infected"
+				//Replaced "Space" with "ZOMBIE"
+				rocketSprite.render();
+				//convert int score to string LPCSTR then substitute this into the printText method
+				string s = to_string(score);
+				LPCSTR lpStr = s.c_str();
+				theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText("Score -", FTPoint(290.0f, -1.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(410.0f, -1.0f, 0.0f));
+			}
 		}
 
 
@@ -201,6 +218,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		//Commented this so out i could use multiple key inputs at the same time
 		//theInputMgr->clearBuffers(theInputMgr->KEYS_DOWN_BUFFER | theInputMgr->KEYS_PRESSED_BUFFER);
     }
+
 
 	theOGLWnd.shutdown(); //Free any resources
 	pgmWNDMgr->destroyWND(); //Destroy the program window
