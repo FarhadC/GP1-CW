@@ -24,8 +24,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
     const int windowHeight = 768;
     const int windowBPP = 16;
 
-
-
     //This is our window
 	static cWNDManager* pgmWNDMgr = cWNDManager::getInstance();
 
@@ -138,10 +136,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	// Attach sound manager to rocket sprite
 	rocketSprite.attachSoundMgr(theSoundMgr);
 
-    //This is the mainloop, we render frames until isRunning returns false
+    //Play background audio before main loop
+	theSoundMgr->getSnd("Theme")->playAudio(AL_TRUE);
+	//This is the mainloop, we render frames until isRunning returns false
 	while (pgmWNDMgr->isWNDRunning())
     {
 		pgmWNDMgr->processWNDEvents(); //Process any window events
+		
 
         //We get the time that passed since the last frame
 		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
@@ -169,7 +170,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		//Changed name of text from "Asteroids" to "Infected"
 		//Replaced "Space" with "ZOMBIE"
 		rocketSprite.render();
+		string to_string(int score);
 		theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
+		theFontMgr->getFont("ZOMBIE")->printText("Score" + score, FTPoint(200.0f, -1.0f, 0.0f));
+
 
 		pgmWNDMgr->swapBuffers();
 		//Commented this so out i could use multiple key inputs at the same time

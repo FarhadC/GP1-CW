@@ -42,6 +42,7 @@ cWNDManager* cWNDManager::getInstance()
 		pInstance = new cWNDManager();
 	}
 	return cWNDManager::pInstance;
+
 }
 
 bool cWNDManager::createWND(int width, int height, int bpp)
@@ -53,6 +54,7 @@ bool cWNDManager::createWND(int width, int height, int bpp)
 	m_windowRect.right = (long)width; // Set Right Value To Requested Width
 	m_windowRect.top = (long)0;  // Set Top Value To 0
 	m_windowRect.bottom = (long)height;   // Set Bottom Value To Requested Height
+
 
 	// fill out the window class structure
 	m_windowClass.cbSize = sizeof(WNDCLASSEX);
@@ -72,6 +74,7 @@ bool cWNDManager::createWND(int width, int height, int bpp)
 	if (!RegisterClassEx(&m_windowClass))
 	{
 		return false;
+
 	}
 
 	dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;   // Window Extended Style

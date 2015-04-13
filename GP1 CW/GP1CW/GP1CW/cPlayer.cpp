@@ -124,6 +124,7 @@ void cPlayer::update(float deltaTime)
 					(*asteroidIterator)->setActive(false);
 				}
 				(*bulletIterartor)->setActive(false);
+				score += 10;
 			}
 		}
 	}

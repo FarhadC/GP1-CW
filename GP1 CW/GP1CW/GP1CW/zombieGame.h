@@ -10,5 +10,6 @@
 extern vector<cTexture*> theGameTextures;
 extern vector<cZombie*> theZombies;
 extern vector<cBullet*> thePlayerBullets;
+extern int score;
 
 #endif

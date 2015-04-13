@@ -71,8 +71,7 @@ void cFont::printText(LPCSTR text, FTPoint textPos)
 	//Also rotated by 180 degrees on x axis
 	glTranslatef(5.0f, 25.0f, 0.0f);
 	glRotatef(180, 1.0f, 0.0f, 0.0f);
-	theFont->Render(text,  -1, textPos);
-	
+	theFont->Render(text, -1, textPos);
 
 	glPopMatrix();
 }
