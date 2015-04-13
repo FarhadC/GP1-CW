@@ -121,6 +121,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	spriteBkgd.setTexture(textureBkgd.getTexture());
 	spriteBkgd.setTextureDimensions(textureBkgd.getTWidth(), textureBkgd.getTHeight());
 
+	cTexture textureEndBkgd;
+	textureEndBkgd.createTexture("Images\\EndBackground.png");
+	cBkGround spriteEndBkgd;
+	spriteEndBkgd.setSpritePos(glm::vec2(0.0f, 0.0f));
+	spriteEndBkgd.setTexture(textureEndBkgd.getTexture());
+	spriteEndBkgd.setTextureDimensions(textureEndBkgd.getTWidth(), textureEndBkgd.getTHeight());
+
 	//Changed Rocket sprite to Player sprite
 	//Changed spawn position of player to be further, used to be 512, now 700
 	cTexture rocketTxt;
@@ -148,31 +155,46 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		float elapsedTime = pgmWNDMgr->getElapsedSeconds();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		spriteBkgd.render();
-
-		rocketSprite.update(elapsedTime);
-
-		vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
-		while (asteroidIterator != theZombies.end())
+		//If the player gets over 300 points, close the window
+		if (score > 2500)
 		{
-			if ((*asteroidIterator)->isActive() == false)
-			{
-				asteroidIterator = theZombies.erase(asteroidIterator);
-			}
-			else
-			{
-				(*asteroidIterator)->update(elapsedTime);
-				(*asteroidIterator)->render();
-				++asteroidIterator;
-			}
+			spriteEndBkgd.render();
+			string s = to_string(score);
+			LPCSTR lpStr = s.c_str();
+			theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(675.0f, -525.0f, 0.0f));
+			theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(975.0f, -525.0f, 0.0f));
 		}
+		else
+		{
+			spriteBkgd.render();
 
-		//Changed name of text from "Asteroids" to "Infected"
-		//Replaced "Space" with "ZOMBIE"
-		rocketSprite.render();
-		string to_string(int score);
-		theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
-		theFontMgr->getFont("ZOMBIE")->printText("Score" + score, FTPoint(200.0f, -1.0f, 0.0f));
+			rocketSprite.update(elapsedTime);
+
+			vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
+			while (asteroidIterator != theZombies.end())
+			{
+				if ((*asteroidIterator)->isActive() == false)
+				{
+					asteroidIterator = theZombies.erase(asteroidIterator);
+				}
+				else
+				{
+					(*asteroidIterator)->update(elapsedTime);
+					(*asteroidIterator)->render();
+					++asteroidIterator;
+				}
+			}
+
+			//Changed name of text from "Asteroids" to "Infected"
+			//Replaced "Space" with "ZOMBIE"
+			rocketSprite.render();
+			//convert int score to string LPCSTR then substitute this into the printText method
+			string s = to_string(score);
+			LPCSTR lpStr = s.c_str();
+			theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
+			theFontMgr->getFont("ZOMBIE")->printText("Score -", FTPoint(290.0f, -1.0f, 0.0f));
+			theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(410.0f, -1.0f, 0.0f));
+		}
 
 
 		pgmWNDMgr->swapBuffers();
