@@ -65,12 +65,14 @@ Render the text using the desired font
 void cFont::printText(LPCSTR text, FTPoint textPos)
 {
 	glPushMatrix();
-
-	glColor3f(0.0f, 255.0f, 0.0f);
+	//changed text colour to red
+	glColor3f(225.0f, 0.0f, 0.0f);
 	//Moved the text. Translated by 5 on x and 20 on y
 	//Also rotated by 180 degrees on x axis
+	//Also scale the text to be big enough, scale by 1.5 in x and y
 	glTranslatef(5.0f, 25.0f, 0.0f);
 	glRotatef(180, 1.0f, 0.0f, 0.0f);
+	glScalef(1.5f, 1.5f, 0.0f);
 	theFont->Render(text, -1, textPos);
 
 	glPopMatrix();

@@ -12,7 +12,7 @@ cZombie.h
 class cZombie : public cSprite
 {
 private:
-	glm::vec2 asteroidVelocity = glm::vec2(0.0f, 0.0f);
+	glm::vec2 zombieVelocity = glm::vec2(0.0f, 0.0f);
 	//zombies have 3 health
 	float health = (rand() % 10 + 1);
 
@@ -20,8 +20,8 @@ private:
 public:
 	void render();		// Default render function
 	void update(float deltaTime);		// Player update method
-	void setAsteroidVelocity(glm::vec2 asteroidVel);   // Sets the velocity for the player
-	glm::vec2 getAsteroidVelocity();				 // Gets the player velocity
+	void setZombieVelocity(glm::vec2 asteroidVel);   // Sets the velocity for the player
+	glm::vec2 getZombieVelocity();				 // Gets the player velocity
 	//Constructor to set and get health
 	void setHealth(float currentHealth);
 	float getHealth();

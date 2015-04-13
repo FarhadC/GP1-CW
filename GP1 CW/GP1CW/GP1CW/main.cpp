@@ -108,7 +108,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		theZombies[astro]->setTexture(theGameTextures[randAsteroid]->getTexture());
 		theZombies[astro]->setTextureDimensions(theGameTextures[randAsteroid]->getTWidth(), theGameTextures[randAsteroid]->getTHeight());
 		theZombies[astro]->setSpriteCentre();
-		theZombies[astro]->setAsteroidVelocity(glm::vec2(glm::vec2(0.0f, 0.0f)));
+		theZombies[astro]->setZombieVelocity(glm::vec2(glm::vec2(0.0f, 0.0f)));
 		theZombies[astro]->setActive(true);
 		theZombies[astro]->setMdlRadius();
 	}
@@ -147,7 +147,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	rocketSprite.setTexture(rocketTxt.getTexture());
 	rocketSprite.setTextureDimensions(rocketTxt.getTWidth(), rocketTxt.getTHeight());
 	rocketSprite.setSpriteCentre();
-	rocketSprite.setRocketVelocity(glm::vec2(0.0f, 0.0f));
+	rocketSprite.setPlayerVelocity(glm::vec2(0.0f, 0.0f));
 
 	// Attach sound manager to rocket sprite
 	rocketSprite.attachSoundMgr(theSoundMgr);
@@ -155,6 +155,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
     //Play background audio before main loop
 	theSoundMgr->getSnd("Theme")->playAudio(AL_TRUE);
 	//This is the mainloop, we render frames until isRunning returns false
+	//Edited loop to show code based on menu screens
+	//To begin, show start screen when window open, if player presses space, render game
+	//if player reaches > x score then load end screen and display score
 	while (pgmWNDMgr->isWNDRunning())
     {
 		pgmWNDMgr->processWNDEvents(); //Process any window events
@@ -170,14 +173,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		if (theInputMgr->wasKeyPressed(VK_RETURN))
 		{
 			//If the player gets over x points, renders the end screen and show the players score
-			if (score > 2500)
+			if (score > 200)
 			{
-				//show the players score
+				//convert int and show the players score. pScore = players score
 				spriteEndBkgd.render();
-				string s = to_string(score);
-				LPCSTR lpStr = s.c_str();
-				theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(675.0f, -525.0f, 0.0f));
-				theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(975.0f, -525.0f, 0.0f));
+				string points = to_string(score);
+				LPCSTR pScore = points.c_str();
+				theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(390.0f, -350.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText(pScore, FTPoint(690.0f, -350.0f, 0.0f));
 			}
 
 			else
@@ -205,11 +208,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				//Replaced "Space" with "ZOMBIE"
 				rocketSprite.render();
 				//convert int score to string LPCSTR then substitute this into the printText method
-				string s = to_string(score);
-				LPCSTR lpStr = s.c_str();
-				theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -1.0f, 0.0f));
-				theFontMgr->getFont("ZOMBIE")->printText("Score -", FTPoint(290.0f, -1.0f, 0.0f));
-				theFontMgr->getFont("ZOMBIE")->printText(lpStr, FTPoint(410.0f, -1.0f, 0.0f));
+				string points = to_string(score);
+				LPCSTR pScore = points.c_str();
+				theFontMgr->getFont("ZOMBIE")->printText("Infected", FTPoint(0.0f, -10.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText("Score -", FTPoint(200.0f, -10.0f, 0.0f));
+				theFontMgr->getFont("ZOMBIE")->printText(pScore, FTPoint(320.0f, -10.0f, 0.0f));
 			}
 		}
 

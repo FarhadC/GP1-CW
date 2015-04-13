@@ -60,18 +60,18 @@ void cZombie::update(float deltaTime)
   Sets the velocity for the Zombie
 =================================================================
 */
-void cZombie::setAsteroidVelocity(glm::vec2 AsteroidVel)
+void cZombie::setZombieVelocity(glm::vec2 ZombieVel)
 {
-	asteroidVelocity = AsteroidVel;
+	zombieVelocity = ZombieVel;
 }
 /*
 =================================================================
   Gets the Zombie velocity
 =================================================================
 */
-glm::vec2 cZombie::getAsteroidVelocity()
+glm::vec2 cZombie::getZombieVelocity()
 {
-	return asteroidVelocity;
+	return zombieVelocity;
 }
 /*
 This sets the health for a zombie

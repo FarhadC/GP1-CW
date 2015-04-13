@@ -98,51 +98,51 @@ void cPlayer::update(float deltaTime)
 
 	spriteVelocityAdd *= spriteTranslation;
 
-	rocketVelocity += spriteVelocityAdd;
+	playerVelocity += spriteVelocityAdd;
 
-	spritePos2D += rocketVelocity * deltaTime;
+	spritePos2D += playerVelocity * deltaTime;
 
-	rocketVelocity *= 0.95;
+	playerVelocity *= 0.95;
 
 	/*
 	==============================================================
 	| Check for collisions
 	==============================================================
 	*/
-	for (vector<cBullet*>::iterator bulletIterartor = thePlayerBullets.begin(); bulletIterartor != thePlayerBullets.end(); ++bulletIterartor)
+	for (vector<cBullet*>::iterator bulletIterator = thePlayerBullets.begin(); bulletIterator != thePlayerBullets.end(); ++bulletIterator)
 	{
-		(*bulletIterartor)->update(deltaTime);
-		for (vector<cZombie*>::iterator asteroidIterator = theZombies.begin(); asteroidIterator != theZombies.end(); ++asteroidIterator)
+		(*bulletIterator)->update(deltaTime);
+		for (vector<cZombie*>::iterator zombieIterator = theZombies.begin(); zombieIterator != theZombies.end(); ++zombieIterator)
 		{
-			if ((*asteroidIterator)->collidedWith((*asteroidIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
+			if ((*zombieIterator)->collidedWith((*zombieIterator)->getBoundingRect(), (*bulletIterator)->getBoundingRect()))
 			{
 				// if a collision set the bullet and asteroid to false
 				//Everytime bullet hits zombie, health -1 and also add 10 to players score
-				(*asteroidIterator)->setHealth(((*asteroidIterator)->getHealth()) - 1);
-				if ((*asteroidIterator)->getHealth() < 1)
+				(*zombieIterator)->setHealth(((*zombieIterator)->getHealth()) - 1);
+				if ((*zombieIterator)->getHealth() < 1)
 				{
-					(*asteroidIterator)->setActive(false);
+					(*zombieIterator)->setActive(false);
 				}
-				(*bulletIterartor)->setActive(false);
+				(*bulletIterator)->setActive(false);
 				score += 10;
 			}
 		}
 	}
 
-	vector<cBullet*>::iterator bulletIterartor = thePlayerBullets.begin();
-	while (bulletIterartor != thePlayerBullets.end())
+	vector<cBullet*>::iterator bulletIterator = thePlayerBullets.begin();
+	while (bulletIterator != thePlayerBullets.end())
 	{
-		if ((*bulletIterartor)->isActive() == false)
+		if ((*bulletIterator)->isActive() == false)
 		{
-			bulletIterartor = thePlayerBullets.erase(bulletIterartor);
+			bulletIterator = thePlayerBullets.erase(bulletIterator);
 			// play the explosion sound.
 			m_SoundMgr->getSnd("Impact")->playAudio(AL_TRUE);
 		}
 		else
 		{
-			//(*bulletIterartor)->update(deltaTime);
-			(*bulletIterartor)->render();
-			++bulletIterartor;
+			//(*bulletIterator)->update(deltaTime);
+			(*bulletIterator)->render();
+			++bulletIterator;
 		}
 	}
 }
@@ -151,16 +151,16 @@ void cPlayer::update(float deltaTime)
   Sets the velocity for the rocket
 =================================================================
 */
-void cPlayer::setRocketVelocity(glm::vec2 rocketVel)
+void cPlayer::setPlayerVelocity(glm::vec2 playerVel)
 {
-	rocketVelocity = rocketVel;
+	playerVelocity = playerVel;
 }
 /*
 =================================================================
   Gets the rocket velocity
 =================================================================
 */
-glm::vec2 cPlayer::getRocketVelocity()
+glm::vec2 cPlayer::getPlayerVelocity()
 {
-	return rocketVelocity;
+	return playerVelocity;
 }
