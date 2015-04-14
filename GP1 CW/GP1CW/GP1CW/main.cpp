@@ -13,11 +13,14 @@
 #include "cFontMgr.h"
 #include "cSprite.h"
 #include "zombieGame.h"
+#include "cGamepad.h"
+
 
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
                    LPSTR cmdLine,
                    int cmdShow)
+
 {
     //Set our window settings
     const int windowWidth = 1152;
@@ -172,9 +175,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		//if player pushes enter, load the game screen
 		if (theInputMgr->wasKeyPressed(VK_RETURN))
+			//player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_A
 		{
 			//If the player gets over x points, renders the end screen and show the players score
-			if (score > 200)
+			if (score > 2200)
 			{
 				
 				//convert int and show the players score. (pScore = players score)

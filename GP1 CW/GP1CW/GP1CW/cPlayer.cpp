@@ -5,6 +5,9 @@ cPlayer.cpp
 =================
 */
 #include "cPlayer.h"
+#include "cGamepad.h"
+
+cGamepad* player1;
 
 void cPlayer::render()
 {
@@ -38,22 +41,25 @@ void cPlayer::render()
 Update the sprite position
 =================================================================
 */
-
+//Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A
 void cPlayer::update(float deltaTime)
 {
-	if (m_InputMgr->isKeyDown(VK_RIGHT))
+
+	player1 = new cGamepad(1);
+
+	if (m_InputMgr->isKeyDown(VK_RIGHT) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT )
 	{
 		spriteRotation += 5.0f;
 	}
-	if (m_InputMgr->isKeyDown(VK_LEFT))
+	if (m_InputMgr->isKeyDown(VK_LEFT) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
 	{
 		spriteRotation -= 5.0f;
 	}
-	if (m_InputMgr->isKeyDown(VK_UP))
+	if (m_InputMgr->isKeyDown(VK_UP) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)
 	{
 		spriteTranslation = (glm::vec2(2.0f, 2.0f));
 	}
-	if (m_InputMgr->isKeyDown(VK_DOWN))
+	if (m_InputMgr->isKeyDown(VK_DOWN) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 	{
 		spriteTranslation = -(glm::vec2(2.0f, 2.0f));
 	}
@@ -66,8 +72,10 @@ void cPlayer::update(float deltaTime)
 		spriteScaling -= 0.2f;
 	}
 
-	if (m_InputMgr->isKeyDown(VK_SPACE))
+	if (m_InputMgr->isKeyDown(VK_SPACE) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
+		//player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER
 	{
+		//player1->vibrate(65535, 65535);
 		// Add new bullet sprite to the vector array
 		thePlayerBullets.push_back(new cBullet);
 		int numBullets = thePlayerBullets.size() - 1;

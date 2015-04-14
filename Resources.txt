@@ -2,3 +2,5 @@ Zombie (font) - http://www.dafont.com/zombie.font
 Ak47 shot (Audio) - http://www.freesound.org/people/pepv/sounds/205013/
 Zombie_Hit (Audio) - http://www.freesound.org/people/Under7dude/sounds/163447/
 Background (Audio) - http://www.freesound.org/people/joshuaempyre/sounds/251461/
+controller - http://www.codeproject.com/Articles/26949/Xbox-360-Controller-Input-in-C-with-XInput
+keyboard buttons - http://www.kbdedit.com/manual/low_level_vk_list.html

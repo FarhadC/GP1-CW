@@ -60,6 +60,9 @@
     <ClCompile Include="zombieGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cGamepad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBkGround.h">
@@ -110,6 +113,9 @@
     <ClInclude Include="zombieGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cGamepad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Libraries\alut.lib" />
@@ -121,6 +127,7 @@
     <Library Include="Libraries\OpenAL32.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Audio\Space_Coast.mp3" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

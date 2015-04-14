@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cGamepad.cpp" />
     <ClCompile Include="zombieGame.cpp" />
     <ClCompile Include="cZombie.cpp" />
     <ClCompile Include="cBkGround.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="windowOGL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cGamepad.h" />
     <ClInclude Include="zombieGame.h" />
     <ClInclude Include="cZombie.h" />
     <ClInclude Include="cBkGround.h" />
@@ -108,7 +110,8 @@
     <Library Include="Libraries\OpenAL32.lib" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Audio\Space_Coast.mp3" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

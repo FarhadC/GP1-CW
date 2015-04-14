@@ -20,7 +20,7 @@ private:
 public:
 	void render();		// Default render function
 	void update(float deltaTime);		// Player update method
-	void setZombieVelocity(glm::vec2 asteroidVel);   // Sets the velocity for the player
+	void setZombieVelocity(glm::vec2 zombieVel);   // Sets the velocity for the player
 	glm::vec2 getZombieVelocity();				 // Gets the player velocity
 	//Constructor to set and get health
 	void setHealth(float currentHealth);
