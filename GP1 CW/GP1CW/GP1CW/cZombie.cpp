@@ -5,6 +5,7 @@ cZombie.cpp
 =================
 */
 #include "cZombie.h"
+#include "cPlayer.h"
 
 void cZombie::render()
 {

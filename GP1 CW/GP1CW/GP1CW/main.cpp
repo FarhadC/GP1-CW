@@ -20,8 +20,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    int cmdShow)
 {
     //Set our window settings
-    const int windowWidth = 1024;
-    const int windowHeight = 768;
+    const int windowWidth = 1152;
+    const int windowHeight = 864;
     const int windowBPP = 16;
 
     //This is our window
@@ -139,18 +139,18 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	//Changed Rocket sprite to Player sprite
 	//Changed spawn position of player to be further, used to be 512, now 700
-	cTexture rocketTxt;
-	rocketTxt.createTexture("Images\\Player.png");
-	cPlayer rocketSprite;
-	rocketSprite.attachInputMgr(theInputMgr); // Attach the input manager to the sprite
-	rocketSprite.setSpritePos(glm::vec2(700.0f, 380.0f));
-	rocketSprite.setTexture(rocketTxt.getTexture());
-	rocketSprite.setTextureDimensions(rocketTxt.getTWidth(), rocketTxt.getTHeight());
-	rocketSprite.setSpriteCentre();
-	rocketSprite.setPlayerVelocity(glm::vec2(0.0f, 0.0f));
+	cTexture playerTxt;
+	playerTxt.createTexture("Images\\Player.png");
+	cPlayer playerSprite;
+	playerSprite.attachInputMgr(theInputMgr); // Attach the input manager to the sprite
+	playerSprite.setSpritePos(glm::vec2(700.0f, 380.0f));
+	playerSprite.setTexture(playerTxt.getTexture());
+	playerSprite.setTextureDimensions(playerTxt.getTWidth(), playerTxt.getTHeight());
+	playerSprite.setSpriteCentre();
+	playerSprite.setPlayerVelocity(glm::vec2(0.0f, 0.0f));
 
 	// Attach sound manager to rocket sprite
-	rocketSprite.attachSoundMgr(theSoundMgr);
+	playerSprite.attachSoundMgr(theSoundMgr);
 
     //Play background audio before main loop
 	theSoundMgr->getSnd("Theme")->playAudio(AL_TRUE);
@@ -158,6 +158,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//Edited loop to show code based on menu screens
 	//To begin, show start screen when window open, if player presses space, render game
 	//if player reaches > x score then load end screen and display score
+	//else just play the game loop
 	while (pgmWNDMgr->isWNDRunning())
     {
 		pgmWNDMgr->processWNDEvents(); //Process any window events
@@ -175,38 +176,47 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			//If the player gets over x points, renders the end screen and show the players score
 			if (score > 200)
 			{
-				//convert int and show the players score. pScore = players score
+				
+				//convert int and show the players score. (pScore = players score)
 				spriteEndBkgd.render();
 				string points = to_string(score);
 				LPCSTR pScore = points.c_str();
 				theFontMgr->getFont("ZOMBIE")->printText("Your Score was -", FTPoint(390.0f, -350.0f, 0.0f));
 				theFontMgr->getFont("ZOMBIE")->printText(pScore, FTPoint(690.0f, -350.0f, 0.0f));
+
+				//If player presses the backspace button, close (exit) the game window
+				if (theInputMgr->wasKeyPressed(VK_BACK))
+				{
+					exit(0);
+				}
+
 			}
 
+			//else render the main game
 			else
 			{
 				spriteBkgd.render();
 
-				rocketSprite.update(elapsedTime);
+				playerSprite.update(elapsedTime);
 
-				vector<cZombie*>::iterator asteroidIterator = theZombies.begin();
-				while (asteroidIterator != theZombies.end())
+				vector<cZombie*>::iterator zombieIterator = theZombies.begin();
+				while (zombieIterator != theZombies.end())
 				{
-					if ((*asteroidIterator)->isActive() == false)
+					if ((*zombieIterator)->isActive() == false)
 					{
-						asteroidIterator = theZombies.erase(asteroidIterator);
+						zombieIterator = theZombies.erase(zombieIterator);
 					}
 					else
 					{
-						(*asteroidIterator)->update(elapsedTime);
-						(*asteroidIterator)->render();
-						++asteroidIterator;
+						(*zombieIterator)->update(elapsedTime);
+						(*zombieIterator)->render();
+						++zombieIterator;
 					}
 				}
 
 				//Changed name of text from "Asteroids" to "Infected"
 				//Replaced "Space" with "ZOMBIE"
-				rocketSprite.render();
+				playerSprite.render();
 				//convert int score to string LPCSTR then substitute this into the printText method
 				string points = to_string(score);
 				LPCSTR pScore = points.c_str();
