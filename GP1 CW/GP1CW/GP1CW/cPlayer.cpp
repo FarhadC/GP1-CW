@@ -4,9 +4,11 @@ cPlayer.cpp
 - Header file for class definition - IMPLEMENTATION
 =================
 */
+//Include gamepad header class
 #include "cPlayer.h"
 #include "cGamepad.h"
 
+//create new player
 cGamepad* player1;
 
 void cPlayer::render()
@@ -44,34 +46,40 @@ Update the sprite position
 //Player1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A
 void cPlayer::update(float deltaTime)
 {
-
+	//new player (1)
 	player1 = new cGamepad(1);
 
+	//if press right key or dpad right, rotate +ve
 	if (m_InputMgr->isKeyDown(VK_RIGHT) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT )
 	{
 		spriteRotation += 5.0f;
 	}
+	//if press left key or dpad left, rotate -ve
 	if (m_InputMgr->isKeyDown(VK_LEFT) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
 	{
 		spriteRotation -= 5.0f;
 	}
+	//if press up key or dpad up, move direction +ve
 	if (m_InputMgr->isKeyDown(VK_UP) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)
 	{
 		spriteTranslation = (glm::vec2(2.0f, 2.0f));
 	}
+	//if press down key or dpad down, move direction -ve
 	if (m_InputMgr->isKeyDown(VK_DOWN) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 	{
 		spriteTranslation = -(glm::vec2(2.0f, 2.0f));
 	}
-	if (m_InputMgr->isKeyDown(int('A')))
+	//although it serves no real purpose, if press A key or X button scale +ve
+	if (m_InputMgr->isKeyDown(int('A')) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_X)
 	{
 		spriteScaling += 0.2f;
 	}
-	if (m_InputMgr->isKeyDown(int('S')))
+	//And if press S key or Y button scale -ve
+	if (m_InputMgr->isKeyDown(int('S')) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_Y)
 	{
 		spriteScaling -= 0.2f;
 	}
-
+	//if press space key or right should button (RB), shoot bullets
 	if (m_InputMgr->isKeyDown(VK_SPACE) || player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
 		//player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER
 	{
@@ -143,7 +151,7 @@ void cPlayer::update(float deltaTime)
 		if ((*bulletIterator)->isActive() == false)
 		{
 			bulletIterator = thePlayerBullets.erase(bulletIterator);
-			// play the explosion sound.
+			// play the bullet impact sound.
 			m_SoundMgr->getSnd("Impact")->playAudio(AL_TRUE);
 		}
 		else

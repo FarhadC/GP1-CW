@@ -160,8 +160,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//This is the mainloop, we render frames until isRunning returns false
 	//Edited loop to show code based on menu screens
 	//To begin, show start screen when window open, if player presses space, render game
-	//if player reaches > x score then load end screen and display score
-	//else just play the game loop
 	while (pgmWNDMgr->isWNDRunning())
     {
 		pgmWNDMgr->processWNDEvents(); //Process any window events
@@ -177,7 +175,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		if (theInputMgr->wasKeyPressed(VK_RETURN))
 			//player1->getState().Gamepad.wButtons & XINPUT_GAMEPAD_A
 		{
-			//If the player gets over x points, renders the end screen and show the players score
+			//If the player gets over x (e.g. 2000) points, renders the end screen and show the players score
 			if (score > 2200)
 			{
 				

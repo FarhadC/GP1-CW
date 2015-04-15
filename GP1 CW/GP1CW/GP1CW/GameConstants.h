@@ -37,6 +37,7 @@
 using namespace std;
 
 //Define the string to appear in the top left corner of the window
+//Changed window name to "Infected"
 #define WINDOW_TITLE "Infected"
 
 // This header file contains all the constants & enumarated types for the game

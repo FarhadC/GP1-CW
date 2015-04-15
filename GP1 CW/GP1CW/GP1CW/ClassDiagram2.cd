@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cBullet">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAQAAAAQAAAAABAAAAAAAAAAAUAAA=</HashCode>
+      <FileName>cBullet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cFont">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAgAIAAAAAAAAAAAAAAIAAAAEAAAAAA=</HashCode>
+      <FileName>cFont.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cFontMgr">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAACAAAAAAAEAAAQIEAACAAAAABA=</HashCode>
+      <FileName>cFontMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cGamepad">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAABQAAAAAIAAAAAIAABAAAAAAA=</HashCode>
+      <FileName>cGamepad.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cInputMgr">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECACAAAAAAwACAAAAIgIBEQAAAAAAAxEREADEEUAEAE=</HashCode>
+      <FileName>cInputMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cPlayer">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAABAAAAEUAAA=</HashCode>
+      <FileName>cPlayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
