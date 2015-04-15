@@ -13,7 +13,7 @@ class cZombie : public cSprite
 {
 private:
 	glm::vec2 zombieVelocity = glm::vec2(0.0f, 0.0f);
-	//zombies have 3 health
+	//zombies have random health
 	float health = (rand() % 10 + 1);
 
 

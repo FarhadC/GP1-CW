@@ -157,7 +157,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     //Play background audio before main loop
 	theSoundMgr->getSnd("Theme")->playAudio(AL_TRUE);
-	//This is the mainloop, we render frames until isRunning returns false
+	//This is the main loop, we render frames until isRunning returns false
 	//Edited loop to show code based on menu screens
 	//To begin, show start screen when window open, if player presses space, render game
 	while (pgmWNDMgr->isWNDRunning())

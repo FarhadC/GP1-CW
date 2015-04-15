@@ -1,6 +1,5 @@
 #include "cGamepad.h"
 
-
 cGamepad::cGamepad(int playerNumber)
 {
 	//Set the controller number
