@@ -4,3 +4,15 @@ Zombie_Hit (Audio) - http://www.freesound.org/people/Under7dude/sounds/163447/
 Background (Audio) - http://www.freesound.org/people/joshuaempyre/sounds/251461/
 controller - http://www.codeproject.com/Articles/26949/Xbox-360-Controller-Input-in-C-with-XInput
 keyboard buttons - http://www.kbdedit.com/manual/low_level_vk_list.html
+
+
+I confirm that the code contained in this file (other than that provided or authorised) is all my own work and has not been submitted elsewhere in fulfilment of this or any other award.
+Farhad Chamo
+
+References:
+"ZOMBIE" font - http://www.dafont.com/zombie.font
+"AK47_Shot" audio - http://www.freesound.org/people/pepv/sounds/205013/
+"Background" audio - http://www.freesound.org/people/joshuaempyre/sounds/251461/
+"Zombie_Hit" audio - http://www.freesound.org/people/Under7dude/sounds/163447/
+Reference website for keyboard input (virtual key codes) - http://www.kbdedit.com/manual/low_level_vk_list.html
+Xbox controller input tutorial/code - http://www.codeproject.com/Articles/26949/Xbox-360-Controller-Input-in-C-with-XInput
